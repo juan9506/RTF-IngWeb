@@ -13,26 +13,26 @@ import org.springframework.transaction.annotation.Transactional;
 
 import co.udea.iw.dao.ClienteDAO;
 import co.udea.iw.dto.Cliente;
+import co.udea.iw.dto.Personal;
+import co.udea.iw.exception.Exception;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
 @ContextConfiguration(locations="classpath:configuracion.xml")
 class ClienteImplTest {
 
-	@Autowired
+	@Autowired 
 	ClienteDAO clienteDao;
+	Personal responsable = new Personal(10397014, "Juan Esteban Andrade", "Gerente");
+	Cliente cliente = new Cliente(1234567, "Luis Marin", "luis.marin@udea.edu.co");
 	
 	@Test
 	void testGenerarSolicitud() {
-		List<Cliente> clientes = null;
 		try {
-			clientes = clienteDao.generarSolicitud("Juanes", "juanes", "juanes", "juanes", "juanes");
-			for(Cliente cliente: clientes) {
-				System.out.println(cliente.getNombres());
-			}
+			clienteDao.generarSolicitud(001, "Cambio de nevera", "Solicito cambio por garantia de mi nevera", null, responsable, "Complejo", cliente);
 			assertTrue(true);
 		}catch(Exception e) {
-			fail(e.getMessage());
+			fail(e);
 		}
 	}
 

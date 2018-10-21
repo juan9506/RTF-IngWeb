@@ -5,7 +5,7 @@
 <hibernate-mapping>
     <class name="co.udea.iw.dto.Cliente" table="CLIENTES">
         <id name="id" type="java.lang.integer">
-            <column name="CEDULA" />
+            <column name="ID" />
             <generator class="assigned" />
         </id>
         <property name="nombres" type="java.lang.String">
